@@ -144,4 +144,4 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
 4. Properties
 
 
-    | Prop        | Description
+    | Prop            | Description
