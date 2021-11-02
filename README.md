@@ -25,7 +25,16 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
     ```
 2. Configure Project
   * Android
-     * None(No setup needed)
+     * AndroidManifest.xml
+     ```
+      <manifest...>
+          ...
+          <!-- 
+              Using for load image from internet
+          -->
+          <uses-permission android:name="android.permission.INTERNET"/>
+      </manifest>
+     ```
   * iOS
      * Info.plist
       ```
@@ -56,6 +65,7 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
         'extra': <String, dynamic>{'userId': '1a2b3c4d'},
         'android': <String, dynamic>{
           'isCustomNotification': true,
+          'isShowLogo': false,
           'ringtonePath': 'ringtone_default',
           'backgroundColor': '#0955fa',
           'backgroundUrl': 'https://i.pravatar.cc/500',
