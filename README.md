@@ -67,13 +67,13 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
         'android': <String, dynamic>{
           'isCustomNotification': true,
           'isShowLogo': false,
-          'ringtonePath': 'ringtone_default',
+          'ringtonePath': 'system_ringtone_default',
           'backgroundColor': '#0955fa',
           'backgroundUrl': 'https://i.pravatar.cc/500',
           'actionColor': '#4CAF50'
         },
         'ios': <String, dynamic>{
-          'iconName': 'AppIcon40x40',
+          'iconName': 'CallKitLogo',
           'handleType': 'generic',
           'supportsVideo': true,
           'maximumCallGroups': 2,
@@ -86,7 +86,7 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
           'supportsHolding': true,
           'supportsGrouping': false,
           'supportsUngrouping': false,
-          'ringtonePath': 'Ringtone.caf'
+          'ringtonePath': 'system_ringtone_default'
         }
       };
       await FlutterCallkitIncoming.showCallkitIncoming(params);
@@ -173,13 +173,21 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
     ```
   * Call from Native (iOS PushKit) 
     ```java
+      //Swift
       var info = [String: Any?]()
       info["id"] = "44d915e1-5ff4-4bed-bf13-c423048ec97a"
       info["nameCaller"] = "Hien Nguyen"
       info["handle"] = "0123456789"
+      info["type"] = 1
       SwiftFlutterCallkitIncomingPlugin.sharedInstance?.showCallkitIncoming(flutter_callkit_incoming.Data(args: info), fromPushKit: true)
+
+
+      //OR
+      let data = flutter_callkit_incoming.Data(id: "44d915e1-5ff4-4bed-bf13-c423048ec97a", nameCaller: "Hien Nguyen", handle: "0123456789", type: 0)
+      SwiftFlutterCallkitIncomingPlugin.sharedInstance?.showCallkitIncoming(data, fromPushKit: true)
     ```
-    ```objective-c
+    ```objc
+      //Objective-C
       #if __has_include(<flutter_callkit_incoming/flutter_callkit_incoming-Swift.h>)
       #import <flutter_callkit_incoming/flutter_callkit_incoming-Swift.h>
       #else
