@@ -86,7 +86,9 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
           'ringtonePath': 'system_ringtone_default',
           'backgroundColor': '#0955fa',
           'backgroundUrl': 'https://i.pravatar.cc/500',
-          'actionColor': '#4CAF50'
+          'actionColor': '#4CAF50',
+          'incomingCallNotificationChannelName': "Incoming Call",
+          'missedCallNotificationChannelName': "Missed Call"
         },
         'ios': <String, dynamic>{
           'iconName': 'CallKitLogo',
