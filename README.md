@@ -236,10 +236,10 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
         }
       });
     ```
-  * Call from Native (iOS PushKit) 
+  * Call from Native (iOS/Android) 
 
     ```swift
-      //Swift
+      //Swift iOS
       var info = [String: Any?]()
       info["id"] = "44d915e1-5ff4-4bed-bf13-c423048ec97a"
       info["nameCaller"] = "Hien Nguyen"
@@ -247,6 +247,11 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
       info["type"] = 1
       //... set more data
       SwiftFlutterCallkitIncomingPlugin.sharedInstance?.showCallkitIncoming(flutter_callkit_incoming.Data(args: info), fromPushKit: true)
+    ```
+    
+    ```kotlin
+        //Kotlin/Java Android
+        FlutterCallkitIncomingPlugin.getInstance().showIncomingNotification(...)
     ```
 
     <br>
@@ -283,6 +288,11 @@ A Flutter plugin to show incoming call in your Flutter app(Custom for Android/Ca
       //send custom event from native
       SwiftFlutterCallkitIncomingPlugin.sharedInstance?.sendEventCustom("customEvent", body: ["customKey": "customValue"])
 
+    ```
+
+    ```kotlin
+        //Kotlin/Java Android
+        FlutterCallkitIncomingPlugin.getInstance().showIncomingNotification(...)
     ```
 
 4. Properties
