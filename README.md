@@ -102,7 +102,8 @@ Our top sponsors are shown below!
             actionColor: '#4CAF50',
             textColor: '#ffffff',
             incomingCallNotificationChannelName: "Incoming Call",
-            missedCallNotificationChannelName: "Missed Call"
+            missedCallNotificationChannelName: "Missed Call",
+            isShowCallID: false
         ),
         ios: IOSParams(
           iconName: 'CallKitLogo',
@@ -127,7 +128,7 @@ Our top sponsors are shown below!
     https://github.com/firebase/flutterfire/blob/master/docs/cloud-messaging/receive.md#apple-platforms-and-android
 
   * request permission for post Notification Android 13+
-  For Android 13 and above, please `requestNotificationPermission` before `showCallkitIncoming`
+  For Android 13+, please `requestNotificationPermission` or requestPermission of firebase_messaging before `showCallkitIncoming`
     ```dart
       await FlutterCallkitIncoming.requestNotificationPermission({
         "rationaleMessagePermission": "Notification permission is required, to show notification.",
@@ -369,7 +370,7 @@ Our top sponsors are shown below!
             case .success(let data):
                 print("Received data: \(data)")
                 //Make sure call action.fulfill() when you are done(connected WebRTC - Start counting seconds)
-                //action.fulfill()
+                action.fulfill()
 
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
@@ -378,13 +379,15 @@ Our top sponsors are shown below!
     }
     
     // Func Call API for Decline
-    func onDecline(_ call: Call) {
+    func onDecline(_ call: Call, _ action: CXEndCallAction) {
         let json = ["action": "DECLINE", "data": call.data.toJSON()] as [String: Any]
         print("LOG: onDecline")
         self.performRequest(parameters: json) { result in
             switch result {
             case .success(let data):
                 print("Received data: \(data)")
+                //Make sure call action.fulfill() when you are done
+                action.fulfill()
 
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
@@ -392,13 +395,16 @@ Our top sponsors are shown below!
         }
     }
     
-    func onEnd(_ call: Call) {
+    // Func Call API for End
+    func onEnd(_ call: Call, _ action: CXEndCallAction) {
         let json = ["action": "END", "data": call.data.toJSON()] as [String: Any]
         print("LOG: onEnd")
         self.performRequest(parameters: json) { result in
             switch result {
             case .success(let data):
                 print("Received data: \(data)")
+                //Make sure call action.fulfill() when you are done
+                action.fulfill()
 
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
