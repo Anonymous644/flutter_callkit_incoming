@@ -35,27 +35,35 @@ Our top sponsors are shown below!
     ```console
     flutter pub add flutter_callkit_incoming
     ```
-  * Add pubspec.yaml:
-    ```console
-        dependencies:
-          flutter_callkit_incoming: any
-    ```
-2. Configure Project
-  * Android
-     * AndroidManifest.xml
-     ```
-      <manifest...>
-          ...
-          <!--
-              Using for load image from internet
-          -->
-          <uses-permission android:name="android.permission.INTERNET"/>
-      </manifest>
-     ```
-     The following rule needs to be added in the proguard-rules.pro to avoid obfuscated keys.
-     ```
-      -keep class com.hiennv.flutter_callkit_incoming.** { *; }
-     ```
+    * Add pubspec.yaml:
+      ```console
+          dependencies:
+            flutter_callkit_incoming: any
+      ```
+      2. Configure Project
+         * Android
+            * AndroidManifest.xml
+            ```
+             <manifest...>
+                 ...
+                 <!--
+                     Using for load image from internet
+                 -->
+                 <uses-permission android:name="android.permission.INTERNET"/>
+
+               <application ...>
+                   <activity ...
+                      android:name=".MainActivity"
+                      android:launchMode="singleInstance">
+                    ...
+               ...
+    
+             </manifest>
+            ```
+            The following rule needs to be added in the proguard-rules.pro to avoid obfuscated keys.
+            ```
+             -keep class com.hiennv.flutter_callkit_incoming.** { *; }
+            ```
   * iOS
      * Info.plist
       ```
@@ -152,7 +160,7 @@ Our top sponsors are shown below!
     ```
   * Hide notification call for Android
     ```
-    hideCallkitIncoming
+    hideCallkitIncoming({ id: 'uuid call' })
     ```
 
   * Started an outgoing call
