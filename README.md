@@ -101,12 +101,19 @@ Our top sponsors are shown below!
             subtitle: 'Missed call',
             callbackText: 'Call back',
         ),
+        callingNotification: const NotificationParams(
+          showNotification: true,
+          isShowCallback: true,
+          subtitle: 'Calling...',
+          callbackText: 'Hang Up',
+        ),
         duration: 30000,
         extra: <String, dynamic>{'userId': '1a2b3c4d'},
         headers: <String, dynamic>{'apiKey': 'Abc@123!', 'platform': 'flutter'},
         android: const AndroidParams(
             isCustomNotification: true,
             isShowLogo: false,
+            logoUrl: 'https://i.pravatar.cc/100',
             ringtonePath: 'system_ringtone_default',
             backgroundColor: '#0955fa',
             backgroundUrl: 'https://i.pravatar.cc/500',
@@ -161,8 +168,16 @@ Our top sponsors are shown below!
         nameCaller: 'Hien Nguyen',
         handle: '0123456789',
         type: 1,
-        textMissedCall: 'Missed call',
-        textCallback: 'Call back',
+        missedCallNotification: const NotificationParams(
+          showNotification: true,
+          isShowCallback: true,
+          subtitle: 'Missed call',
+          callbackText: 'Call back',
+        ),
+        android: const AndroidParams(
+          isCustomNotification: true,
+          isShowCallID: true,
+        )
         extra: <String, dynamic>{'userId': '1a2b3c4d'},
       );
       await FlutterCallkitIncoming.showMissCallNotification(params);
@@ -184,7 +199,17 @@ Our top sponsors are shown below!
         handle: '0123456789',
         type: 1,
         extra: <String, dynamic>{'userId': '1a2b3c4d'},
-        ios: IOSParams(handleType: 'generic')
+        ios: IOSParams(handleType: 'generic'),
+        callingNotification: const NotificationParams(
+          showNotification: true,
+          isShowCallback: true,
+          subtitle: 'Calling...',
+          callbackText: 'Hang Up',
+        ),
+        android: const AndroidParams(
+          isCustomNotification: true,
+          isShowCallID: true,
+        )
       );
       await FlutterCallkitIncoming.startCall(params);
     ```
@@ -466,6 +491,6 @@ Our top sponsors are shown below!
     ``` 
     <a href='https://github.com/hiennguyen92/flutter_callkit_incoming/blob/master/example/ios/Runner/AppDelegate.swift'>Please check full: Example</a>
 
-4. Properties
+ Properties
 
     | Prop            | Description
